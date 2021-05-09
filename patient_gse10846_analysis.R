@@ -23,12 +23,11 @@ mpc1_probe <- rowData(se_gse)$ID[which(rowData(se_gse)$Gene.Symbol == "MPC1")]
 mpc2_probe <- rowData(se_gse)$ID[which(rowData(se_gse)$Gene.Symbol == "MPC2")]
 
 # check coefficient of variance on various probes
-
 cov <- function(x) {
   sd(x) / mean(x)
-}
+  }
 
-apply(assay(se_gse[mpc1_probe]), 1, cov) 
+apply(assay(se_gse[mpc1_probe]), 1, cov)
 apply(assay(se_gse[mpc2_probe]), 1, cov)
 
 # make a dataframe for all patients, then merge with classifications from Caro 2012
