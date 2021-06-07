@@ -35,6 +35,23 @@ desired_subtype <- c("BCR", "OxPhos")
 cleaned <- se_gse[ , se_gse$subtype %in% desired_subtype]
 cleaned$subtype <- droplevels(cleaned$subtype)
 
+# UMAP plot following GEO2R
+library(umap)
+treatment <- se_gse$characteristics_ch1.9
+ex <- assay(se_gse)
+ump <- umap(t(ex), n_neighbors = 15, random_state = 123)
+plot(ump$layout, col = as.factor(treatment),  
+     main="UMAP plot", xlab="", ylab="", pch=20, cex=1.5)
+
+treatment2 <- cleaned$characteristics_ch1.9
+ex2 <- assay(cleaned)
+ump2 <- umap(t(ex2), n_neighbors = 15, random_state = 123)
+plot(ump2$layout, col = as.factor(treatment2),  
+     main="UMAP plot", xlab="", ylab="", pch=20, cex=1.5)
+
+# the separating factor between the groups seemed to have been the drug regimen
+# all the classified samples we are interested in are part of the R-CHOP-Like Regimen
+
 # limma for differential expression
 design <- model.matrix(~ 0 + cleaned$subtype)
 colnames(design) <- c("BCR", "OxPhos")
