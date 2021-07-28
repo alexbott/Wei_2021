@@ -164,3 +164,14 @@ subtype %>%
   theme(axis.text.y = element_text(color = 'black')) +
   labs(title = 'ACLY', x = '', y = 'Relative expression ' ~(log[2])) +
   theme_classic()
+
+# write MPC1 and MPC2 values
+write.csv(subset(mpc1, !is.na(subtype) & 
+         !subtype == 'Unassigned' & !subtype == 'HR'),
+         "results/output/mpc1_microarray.csv",
+         row.names = FALSE)
+write.csv(subset(mpc2, !is.na(subtype) & 
+         !subtype == 'Unassigned' & !subtype == 'HR'),
+         "results/output/mpc2_microarray.csv",
+         row.names = FALSE)
+
