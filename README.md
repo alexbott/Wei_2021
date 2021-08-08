@@ -3,7 +3,7 @@
 Code and data for Wei publication. 
 
 1.  Patient data 
-    -  Data from GSE10846
+    -  GSE10846 data - DLBCL patients
     -  Assign subtypes as defined by Caro 2012 and run differential expression with limma
 2.  Metabolomics data 
     -  Steady state metabolomics data 
