@@ -2,8 +2,6 @@
 # Function: Analyze MPC1 and MPC2 expression in subtypes of DLBCL
 # Date: 05/08/21
 
-# https://www.biostars.org/p/221440/
-
 # imports
 library(GEOquery)
 library(SummarizedExperiment)
@@ -149,20 +147,6 @@ subtype %>%
   theme(axis.text.x = element_text(color = 'black')) +
   theme(axis.text.y = element_text(color = 'black')) +
   labs(title = 'ACAT1', x = '', y = 'Relative expression ' ~(log[2])) +
-  theme_classic()
-
-# plot
-subtype %>% 
-  mutate(probe = t(assay(se_gse['210337_s_at']))) %>% 
-  filter(!is.na(subtype) & !subtype == 'Unassigned' & !subtype == 'HR') %>% 
-  ggplot(aes(x = subtype, y = probe)) + 
-  geom_boxplot(width = 0.5, outlier.shape = NA) + 
-  geom_jitter(width = 0.25, alpha = 0.35) +
-  theme(axis.title.x = element_text(size = 13)) +
-  theme(axis.title.y = element_text(size = 13)) +
-  theme(axis.text.x = element_text(color = 'black')) +
-  theme(axis.text.y = element_text(color = 'black')) +
-  labs(title = 'ACLY', x = '', y = 'Relative expression ' ~(log[2])) +
   theme_classic()
 
 # write MPC1 and MPC2 values
